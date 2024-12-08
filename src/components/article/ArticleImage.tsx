@@ -1,7 +1,41 @@
-export function ArticleImage() {
+import { DefaultArticleImage } from "../DefaultArticleImage";
+import { useState } from "react";
+import { ImageSizeNames } from "../../types/image-types";
+import { IMAGE_SIZE_MAP } from "../../constants/image-constants";
+import React from "react";
+
+export interface ArticleImageProps {
+  size: ImageSizeNames;
+  imageUrl: string;
+}
+
+export function ArticleImage(props: ArticleImageProps) {  
+  const [fallbackImage, setFallbackIamge] = useState<boolean>(false)
+
+  const { size, imageUrl } = props;
+
+  function onImageLoadingError() {
+    setFallbackIamge(true);
+  }
+
+  const { container} = IMAGE_SIZE_MAP[size];
+
   return (
-    <div>
-      Article Image
-    </div>
+      <React.Fragment>
+        {fallbackImage != true 
+        ? ( 
+          <img 
+            src={imageUrl ?? "noimage.jpg"} 
+            width={container.width}
+            height={container.height}
+            onError={onImageLoadingError}/>
+        )
+        : (
+        <DefaultArticleImage
+          size={size}
+         /> 
+        )
+    }
+    </React.Fragment>
   )
 }

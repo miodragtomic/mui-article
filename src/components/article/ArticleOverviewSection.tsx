@@ -7,7 +7,7 @@ export function ArticleOverviewSection() {
     <div>
       Article overview section
       <ArticleThumbnailList />
-      <ArticleImage />
+      <ArticleImage size="large" imageUrl="./testimage.jpg"/>
       <ArticleOverview />
     </div>
   )
