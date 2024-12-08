@@ -3,10 +3,10 @@ import { ArticleOverviewSection } from "../components/article/ArticleOverviewSec
 import { ArticleDescriptionSection } from "../components/article/ArticleDescriptionSection";
 
 export function ArticlePage() {
-  const { ArticleId } = useParams();
+  const { articleId } = useParams();
 
   return (
-    <div>Article Page ({ ArticleId })
+    <div>Article Page ({ articleId })
       <ArticleOverviewSection />
       <ArticleDescriptionSection />    
     </div>
