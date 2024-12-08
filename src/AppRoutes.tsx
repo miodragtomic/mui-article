@@ -1,7 +1,7 @@
 import { Routes, Route } from "react-router";
 import {HeaderContentLayout } from "./components/HeaderContentLayout";
-import { ProductPage } from "./pages/ProductPage";
-import { ProductListPage } from "./pages/ProductListPage";
+import { ProductPage } from "./pages/ArticlePage";
+import { ProductListPage } from "./pages/ArticleListPage";
 
 export function AppRoutes() {
   return (

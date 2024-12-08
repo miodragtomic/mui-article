@@ -1,4 +1,4 @@
-export function ProductList() {
+export function ArticleList() {
   return (
     <div>Product List</div>
   )

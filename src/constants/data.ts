@@ -1,4 +1,4 @@
-{
+export const data = {
  "article": {
   "id": 128492,
   "title": "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",

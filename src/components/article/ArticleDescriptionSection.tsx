@@ -1,11 +1,11 @@
 import { Description } from "./Description";
-import { Details } from './/Details'
+import { Details } from './Details'
 import { PricingAndShipping } from "./PricingAndShipping";
 
-export function ProductDescriptionSection() {
+export function ArticleDescriptionSection() {
   return (
     <div>
-      Product description section
+      Article description section
       <Description />
       <Details />
       <PricingAndShipping />
