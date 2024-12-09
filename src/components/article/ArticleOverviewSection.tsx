@@ -1,5 +1,5 @@
 import { ArticleThumbnailList } from "./ArticleThumbnailList";
-import { ArticleOverview } from "./ArticleOverview";
+import { ArticleOverview, ArticleOverviewProps } from "./ArticleOverview";
 import { ArticleModel } from "../../models/ArticleModel";
 import { useState } from "react";
 import  Grid from "@mui/material/Grid2";
@@ -8,7 +8,7 @@ import { Stack, useMediaQuery, useTheme } from "@mui/material";
 import { ArticleImagePreview } from "./ArticleImagePreview";
 
 
-export type ArticleOverviewSectionProps = Pick<ArticleModel, 'images'>
+export type ArticleOverviewSectionProps = Pick<ArticleModel, 'images'> & ArticleOverviewProps;
 
 export function ArticleOverviewSection(props: ArticleOverviewSectionProps) {
   const { images } = props;
@@ -42,7 +42,19 @@ export function ArticleOverviewSection(props: ArticleOverviewSectionProps) {
           </Stack>
         </Grid>
         <Grid size={{ ...gridItemSize}}>
-          <ArticleOverview />
+          <ArticleOverview 
+            id={props.id}
+            description_short={props.description_short}
+            supplier_name={props.supplier_name}
+            supplier_link={props.supplier_link}
+            stars={props.stars}
+            price={props.price}
+            transport_costs={props.transport_costs}
+            currency={props.currency}
+            vat_percent={props.vat_percent}
+            unit={props.unit}
+            minimum_order_quantity={props.minimum_order_quantity}
+          />
         </Grid>
       </Grid>
     </Box>

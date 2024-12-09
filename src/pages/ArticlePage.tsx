@@ -20,8 +20,22 @@ export function ArticlePage() {
   return (
     <React.Fragment>
     { article != null && (
-      <Box sx={{ display: 'flex', flexDirection: 'column'}}>Article Page ({ articleId })
-        <ArticleOverviewSection  images={article?.images ?? []} />
+      <Box sx={{ display: 'flex', flexDirection: 'column'}}>
+        <ArticleOverviewSection  
+          id={article.id}
+          images={article?.images ?? []} 
+          
+          description_short={article.description_short}
+          supplier_name={article.supplier_name}
+          supplier_link={article.supplier_link}
+          stars={article.stars}
+          price={article.price}
+          transport_costs={article.transport_costs}
+          currency={article.currency}
+          vat_percent={article.vat_percent}
+          unit={article.unit}
+          minimum_order_quantity={article.minimum_order_quantity}          
+        />
         <ArticleDescriptionSection />    
       </Box>)
     }    

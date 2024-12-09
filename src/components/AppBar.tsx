@@ -61,13 +61,13 @@ export default function ElevateAppBar(props: AppBarProps) {
       <ElevationScroll {...restProps}>
         <AppBar>
           <Toolbar>
-            <Typography variant="h6" component="div" color='textSecondary'>
+            <Typography variant="h6" component="div" color='secondary'>
               { title }
             </Typography>
             <Box sx={{ flexGrow: 1 }} />
             <Box sx={{ display: { xs: 'none', md: 'flex' } }}>
               <IconButton size="large" aria-label="show 4 new mails" color="inherit">                
-                  <SvgIcon>
+                  <SvgIcon color="info">
                     <FavoriteIcon />
                   </SvgIcon>                
               </IconButton>
@@ -76,12 +76,20 @@ export default function ElevateAppBar(props: AppBarProps) {
                 aria-label="show 17 new notifications"
                 color="inherit"
               >               
-                <SvgIcon>
+                <SvgIcon color="info">
                   <FactSoftIcon />
                 </SvgIcon>               
               </IconButton>
             </Box>
-            <Divider orientation="vertical" variant="fullWidth" flexItem />
+            <Divider               
+              sx={{
+                borderWidth: 1,
+                borderColor: theme => theme.palette.info
+              }}
+              orientation="vertical" 
+              variant="fullWidth" 
+              flexItem 
+            />
             <Box>
               <IconButton
                 size="large"
@@ -90,7 +98,7 @@ export default function ElevateAppBar(props: AppBarProps) {
                 aria-controls={cartMenuIconId}
                 aria-haspopup="true"
                 onClick={handleCartIconClick}
-                color="inherit"
+                color="info"
               >
                 <Badge badgeContent={cartItemsCount} color="error">
                   <SvgIcon>

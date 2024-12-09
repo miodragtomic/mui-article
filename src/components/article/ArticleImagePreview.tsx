@@ -14,11 +14,14 @@ export function ArticleImagePreview(props: ArticleImagePreviewProps) {
 
   }}>
     <ArticleImage  {...props} />
-    <SvgIcon sx={{
-      position: 'absolute',
-      bottom: theme => theme.spacing(0.75),
-      right: theme => theme.spacing(0.75)
-    }}>
+    <SvgIcon 
+      color="info"      
+      sx={{
+        position: 'absolute',
+        bottom: theme => theme.spacing(0.75),
+        right: theme => theme.spacing(0.75)
+      }}
+      >
       <ZoomInIcon />
     </SvgIcon>
   </Box>)

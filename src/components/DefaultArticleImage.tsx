@@ -30,11 +30,11 @@ export function DefaultArticleImage(props: DefaultArticleImageProps) {
         alignItems: 'center',
         border: 'solid',
         borderWidth: 3,
-        borderColor: 'primary'
+        borderColor: theme => theme.palette.text.secondary
       }}
       onClick={onDefaultImageClick}
     >
-      <SvgIcon sx={{ width: icon.width, height: icon.height }}>
+      <SvgIcon color="info" sx={{ width: icon.width, height: icon.height }}>
         <PackageIcon />
       </SvgIcon>
     </Box>
