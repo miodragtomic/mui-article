@@ -7,6 +7,7 @@ import React from "react";
 export interface ArticleImageProps {
   size: ImageSizeNames;
   imageUrl: string;
+  onClick?: () => void;
 }
 
 export function ArticleImage(props: ArticleImageProps) {  
@@ -28,11 +29,14 @@ export function ArticleImage(props: ArticleImageProps) {
             src={imageUrl ?? "noimage.jpg"} 
             width={container.width}
             height={container.height}
-            onError={onImageLoadingError}/>
+            onError={onImageLoadingError}
+            onClick={props?.onClick}
+            />
         )
         : (
         <DefaultArticleImage
           size={size}
+          onClick={props?.onClick}
          /> 
         )
     }
