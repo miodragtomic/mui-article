@@ -5,16 +5,12 @@ import { useMediaQuery, useTheme } from '@mui/material';
 
 export interface ArticleThumbnailProps {
   imageUrlList: string[]
+  onImageClick?(imageUrl: string): void
 }
 
 export function ArticleThumbnailList(props: ArticleThumbnailProps) {
   const theme = useTheme();
   const smAndUp = useMediaQuery(theme.breakpoints.up('sm'));
-
-
-  function onImageClick() {
-    console.log("Image clicked");
-  }
 
   return (
     <Stack direction={smAndUp ? 'column': 'row'} spacing={2}>
@@ -24,7 +20,7 @@ export function ArticleThumbnailList(props: ArticleThumbnailProps) {
             key={imageUrl}
             size='thumbnail' 
             imageUrl={imageUrl} 
-            onClick={onImageClick}
+            onImageClick={props?.onImageClick}
           />
         ))
       }

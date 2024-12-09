@@ -1,5 +1,5 @@
 import { DefaultArticleImage } from "../DefaultArticleImage";
-import { useState } from "react";
+import { useMemo, useState } from "react";
 import { ImageSizeNames } from "../../types/image-types";
 import { IMAGE_SIZE_MAP } from "../../constants/image-constants";
 import React from "react";
@@ -7,7 +7,7 @@ import React from "react";
 export interface ArticleImageProps {
   size: ImageSizeNames;
   imageUrl: string;
-  onClick?: () => void;
+  onImageClick?: (imageUrl: string) => void;
 }
 
 export function ArticleImage(props: ArticleImageProps) {  
@@ -21,22 +21,32 @@ export function ArticleImage(props: ArticleImageProps) {
 
   const { container} = IMAGE_SIZE_MAP[size];
 
+  const actualImageUrl = useMemo( () =>{
+    return imageUrl ?? "noimage.jpg";
+  }, [imageUrl])
+
+  function onClick() {
+    if(props?.onImageClick) {
+      props.onImageClick(actualImageUrl)
+    }
+  }
+
   return (
       <React.Fragment>
         {fallbackImage != true 
         ? ( 
           <img 
-            src={imageUrl ?? "noimage.jpg"} 
+            src={actualImageUrl } 
             width={container.width}
             height={container.height}
             onError={onImageLoadingError}
-            onClick={props?.onClick}
+            onClick={onClick}
             />
         )
         : (
         <DefaultArticleImage
           size={size}
-          onClick={props?.onClick}
+          onClick={onClick}
          /> 
         )
     }

@@ -1,11 +1,11 @@
 import { ArticleThumbnailList } from "./ArticleThumbnailList";
-import { ArticleImage } from "./ArticleImage"
 import { ArticleOverview } from "./ArticleOverview";
 import { ArticleModel } from "../../models/ArticleModel";
 import { useState } from "react";
 import  Grid from "@mui/material/Grid2";
 import Box from "@mui/material/Box";
 import { Stack, useMediaQuery, useTheme } from "@mui/material";
+import { ArticleImagePreview } from "./ArticleImagePreview";
 
 
 export type ArticleOverviewSectionProps = Pick<ArticleModel, 'images'>
@@ -28,13 +28,17 @@ export function ArticleOverviewSection(props: ArticleOverviewSectionProps) {
     xl: 4
   }
 
+  function onThumbnailImageClick(imageUrl: string) {
+    setSelectedImage(imageUrl);
+  }
+
   return (
     <Box sx={{flexGrow: 1}}>
       <Grid container spacing={2}>
         <Grid size={{...gridItemSize}}>
           <Stack direction={ smAndUp ? "row" : "column" } justifyContent="start" alignItems="center" gap={2}>
-            <ArticleThumbnailList imageUrlList={images} />
-            <ArticleImage size="large" imageUrl={selectedImage}/>          
+            <ArticleThumbnailList imageUrlList={images} onImageClick={onThumbnailImageClick} />
+            <ArticleImagePreview size="large" imageUrl={selectedImage}/>          
           </Stack>
         </Grid>
         <Grid size={{ ...gridItemSize}}>
