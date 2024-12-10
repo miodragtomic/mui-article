@@ -20,6 +20,9 @@ export function ArticleOverviewSection(props: ArticleOverviewSectionProps) {
   const theme = useTheme();
   const smAndUp = useMediaQuery(theme.breakpoints.up('sm'));
 
+  const lgAndDown = useMediaQuery(theme.breakpoints.down('lg'));
+
+
   const gridItemSize = {
     xs: 12,
     sm: 12,
@@ -33,8 +36,8 @@ export function ArticleOverviewSection(props: ArticleOverviewSectionProps) {
   }
 
   return (
-    <Box sx={{flexGrow: 1, mx: 4}}>
-      <Grid container spacing={2}>
+    <Box sx={{flexGrow: 1, mx: 4, mt: 3}}>
+      <Grid container spacing={2} sx={lgAndDown ? { justifyContent: 'center'} : {}}>
         <Grid size={{...gridItemSize}}>
           <Stack direction={ smAndUp ? "row" : "column" } justifyContent="start" alignItems="center" gap={2}>
             <ArticleThumbnailList imageUrlList={images} onImageClick={onThumbnailImageClick} />

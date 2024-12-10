@@ -9,7 +9,7 @@ export function Card(props: { title?: string, children?: ReactNode }) {
   const { title = "No Title", children = null } = props;
 
   return (
-    <CardMui elevation={0}>
+    <CardMui elevation={0} sx={{ height: "100%"}}>
       <CardHeader 
         title={title} 
         titleTypographyProps={{
@@ -22,7 +22,7 @@ export function Card(props: { title?: string, children?: ReactNode }) {
         }} 
         subheader={<Divider sx={{ mt: 1}} />}                
       />      
-      <CardContent>
+      <CardContent sx={{ pt: 0 }}>
         { children}
       </CardContent>
     </CardMui>

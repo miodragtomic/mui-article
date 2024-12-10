@@ -46,6 +46,7 @@ export function ArticlePage() {
           currency={article.currency}
           delivery_time={article.delivery_time}
           price_breaks={article.price_breaks}
+          unit={article.unit}
         />    
       </Box>)
     }    
