@@ -1,6 +1,7 @@
 import { Outlet } from 'react-router';
 import { Box, Container } from '@mui/material';
 import AppBar from './AppBar';
+import { useCartReducer } from '../hooks/useCartReducer';
 
 export function HeaderContentLayout() {  
   return (

@@ -10,6 +10,14 @@ import { IconButton, Badge, SvgIcon } from '@mui/material';
 import { FactSoftIcon } from './icons/FactSoftIcon';
 import { FavoriteIcon } from './icons/FavoriteIcon';
 import { CartIcon } from './icons/CartIcon';
+import { useEffect } from 'react';
+import { cartService } from '../services/cartService';
+import { fetchCartFulfilled, fetchCartPending, fetchCartRejected } from '../actions/cartActions';
+import { useDispatch } from 'react-redux';
+import { useSelector } from 'react-redux';
+import { CartModel } from '../models/CartModel';
+import { Dispatch } from 'redux';
+import { StoreActions } from '../store';
 
 export interface AppBarProps extends ElevationScrollProps {
   title: string;
@@ -51,9 +59,18 @@ export default function ElevateAppBar(props: AppBarProps) {
     cartItemsCount = 4, 
     ...restProps} = props ?? {};
 
+  const cartState = useSelector<CartModel, CartModel>( store => store)
+  const dispatch = useDispatch<Dispatch<StoreActions>>();
+
+  useEffect( () => {
+    dispatch(fetchCartPending());
+    cartService.getCart()
+      .then( result => dispatch(fetchCartFulfilled(result)))
+      .catch( () => dispatch(fetchCartRejected()))
+  },[]);
+  
   const cartMenuIconId = "fact"
   function handleCartIconClick() {
-
   }
   return (
     <React.Fragment>
@@ -100,7 +117,7 @@ export default function ElevateAppBar(props: AppBarProps) {
                 onClick={handleCartIconClick}
                 sx={{ color: theme => theme.palette.info.dark}}
               >
-                <Badge badgeContent={cartItemsCount} color="error">
+                <Badge badgeContent={cartState.items} color="error">
                   <SvgIcon>
                     <CartIcon />
                   </SvgIcon>

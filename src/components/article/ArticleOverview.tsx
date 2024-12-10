@@ -22,7 +22,7 @@ export function ArticleOverview(props: ArticleOverviewProps) {
     currency,
     vat_percent,
     unit,
-    minimum_order_quantity
+    minimum_order_quantity,
   } = props;
 
   const [ratingValue, setRatingValue] = useState<number | null>(stars);
@@ -58,7 +58,8 @@ export function ArticleOverview(props: ArticleOverviewProps) {
       <AddToCartButtonSegment
         id={id}
         minimum_order_quantity={minimum_order_quantity}
-        unit={unit}              
+        unit={unit}   
+        price={price}           
       />
     </Stack>
   )
