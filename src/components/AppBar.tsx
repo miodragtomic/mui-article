@@ -61,13 +61,13 @@ export default function ElevateAppBar(props: AppBarProps) {
       <ElevationScroll {...restProps}>
         <AppBar>
           <Toolbar>
-            <Typography variant="h6" component="div" color='secondary'>
+            <Typography sx={{px: 2}} variant="h6" component="div" color='secondary'>
               { title }
             </Typography>
             <Box sx={{ flexGrow: 1 }} />
             <Box sx={{ display: { xs: 'none', md: 'flex' } }}>
-              <IconButton size="large" aria-label="show 4 new mails" color="inherit">                
-                  <SvgIcon color="info">
+              <IconButton size="large" aria-label="show 4 new mails" >                
+                  <SvgIcon sx={{ color : theme => theme.palette.info.dark}}>
                     <FavoriteIcon />
                   </SvgIcon>                
               </IconButton>
@@ -76,7 +76,7 @@ export default function ElevateAppBar(props: AppBarProps) {
                 aria-label="show 17 new notifications"
                 color="inherit"
               >               
-                <SvgIcon color="info">
+                <SvgIcon sx={{ color: theme => theme.palette.info.dark}}>
                   <FactSoftIcon />
                 </SvgIcon>               
               </IconButton>
@@ -84,7 +84,7 @@ export default function ElevateAppBar(props: AppBarProps) {
             <Divider               
               sx={{
                 borderWidth: 1,
-                borderColor: theme => theme.palette.info
+                borderColor: theme => theme.palette.info.light
               }}
               orientation="vertical" 
               variant="fullWidth" 
@@ -98,7 +98,7 @@ export default function ElevateAppBar(props: AppBarProps) {
                 aria-controls={cartMenuIconId}
                 aria-haspopup="true"
                 onClick={handleCartIconClick}
-                color="info"
+                sx={{ color: theme => theme.palette.info.dark}}
               >
                 <Badge badgeContent={cartItemsCount} color="error">
                   <SvgIcon>

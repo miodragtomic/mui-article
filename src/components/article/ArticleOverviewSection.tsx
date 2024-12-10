@@ -33,7 +33,7 @@ export function ArticleOverviewSection(props: ArticleOverviewSectionProps) {
   }
 
   return (
-    <Box sx={{flexGrow: 1}}>
+    <Box sx={{flexGrow: 1, mx: 4}}>
       <Grid container spacing={2}>
         <Grid size={{...gridItemSize}}>
           <Stack direction={ smAndUp ? "row" : "column" } justifyContent="start" alignItems="center" gap={2}>

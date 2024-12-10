@@ -17,6 +17,7 @@ export function ArticleThumbnailList(props: ArticleThumbnailProps) {
       {
         props.imageUrlList.map( imageUrl => (
           <ArticleImage 
+            slotProps={{ defaultArticleImage: {sx: { cursor: 'pointer'}}}}
             key={imageUrl}
             size='thumbnail' 
             imageUrl={imageUrl} 

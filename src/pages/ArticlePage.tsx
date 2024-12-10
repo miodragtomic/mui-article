@@ -36,7 +36,17 @@ export function ArticlePage() {
           unit={article.unit}
           minimum_order_quantity={article.minimum_order_quantity}          
         />
-        <ArticleDescriptionSection />    
+        <ArticleDescriptionSection 
+          description_long={article.description_long}
+          features={article.features}
+          attachments={article.attachments}
+          keywords={article.keywords}
+          minimum_order_quantity={article.minimum_order_quantity}
+          transport_costs={article.transport_costs}
+          currency={article.currency}
+          delivery_time={article.delivery_time}
+          price_breaks={article.price_breaks}
+        />    
       </Box>)
     }    
     </React.Fragment>

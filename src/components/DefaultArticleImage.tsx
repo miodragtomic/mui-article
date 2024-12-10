@@ -1,12 +1,13 @@
 import SvgIcon from "@mui/material/SvgIcon"
 import { PackageIcon } from "./icons/PackageIcon"
-import Box from "@mui/material/Box";
+import Box, { BoxProps } from "@mui/material/Box";
 import { ImageSizeNames } from "../types/image-types";
 import { IMAGE_SIZE_MAP } from "../constants/image-constants";
 
 export interface DefaultArticleImageProps {
   size: ImageSizeNames;
   onClick?: () => void
+  sx?: BoxProps['sx']
 }
 
 
@@ -30,7 +31,8 @@ export function DefaultArticleImage(props: DefaultArticleImageProps) {
         alignItems: 'center',
         border: 'solid',
         borderWidth: 3,
-        borderColor: theme => theme.palette.text.secondary
+        borderColor: theme => theme.palette.info.light,
+        ...( props?.sx ?? {})
       }}
       onClick={onDefaultImageClick}
     >

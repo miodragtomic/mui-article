@@ -1,3 +1,4 @@
-import { ArticleDto } from "../api/dtos/ArticleDto";
+import { ArticleDto, ArticleSimpleDto } from "../api/dtos/ArticleDto";
 
 export type ArticleModel = ArticleDto;
+export type ArticleSimpleModel = ArticleSimpleDto;

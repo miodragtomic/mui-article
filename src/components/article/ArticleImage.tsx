@@ -8,12 +8,15 @@ export interface ArticleImageProps {
   size: ImageSizeNames;
   imageUrl: string;
   onImageClick?: (imageUrl: string) => void;
+  slotProps?: {
+    defaultArticleImage?: object
+  }
 }
 
 export function ArticleImage(props: ArticleImageProps) {  
   const [fallbackImage, setFallbackIamge] = useState<boolean>(false)
 
-  const { size, imageUrl } = props;
+  const { size, imageUrl } = props;  
 
   function onImageLoadingError() {
     setFallbackIamge(true);
@@ -47,6 +50,7 @@ export function ArticleImage(props: ArticleImageProps) {
         <DefaultArticleImage
           size={size}
           onClick={onClick}
+          {...(props?.slotProps?.defaultArticleImage ?? {})}
          /> 
         )
     }

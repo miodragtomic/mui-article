@@ -35,15 +35,15 @@ export function ArticleOverview(props: ArticleOverviewProps) {
       <div>
         <Typography component="p" color="textPrimary">{ description_short }</Typography>
         <Box component="div" sx={{mt: 0.75}}>
-          <Typography component="span" color="textSecondary">by</Typography><Link fontWeight={450} sx={{ ml: 0.5 }} underline="hover" href={supplier_link}>{ supplier_name }</Link>
+          <Typography component="span" color="textDisabled">by</Typography><Link fontWeight={450} sx={{ ml: 0.5 }} underline="hover" href={supplier_link}>{ supplier_name }</Link>
         </Box>      
         <Rating sx={{ mt: 1.5, mb: 3.5, ml: -0.5}} defaultValue={ratingValue} size="medium" />
         <div>
           <div>
             <Typography component="span" color="textPrimary">{ `${formatedPrice} ${currency}` }</Typography>        
-            <Typography component="span" color="textSecondary" sx={{ ml: 1.5}}>+{` ${formatedTransportCosts} ${currency}`} shipping</Typography>
+            <Typography component="span" color="textDisabled" sx={{ ml: 1.5}}>+{` ${formatedTransportCosts} ${currency}`} shipping</Typography>
           </div>
-            <Typography component="div" color="textSecondary">all prices incl. {`${vat_percent}`}% taxes</Typography>
+            <Typography component="div" color="textDisabled">all prices incl. {`${vat_percent}`}% taxes</Typography>
         </div>
       </div>
       <AddToCartButtonSegment

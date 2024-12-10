@@ -11,6 +11,17 @@ export const IMAGE_SIZE_MAP: Record<ImageSizeNames, { container: ImageSize, icon
       height: 31
     }
   },
+  medium: {
+    container: {
+      width: 248,
+      height: 168
+    },
+    icon: {
+      width: 100,
+      height: 100
+    }
+
+  },
   large: {
     container: {
       width: 340,
@@ -21,5 +32,17 @@ export const IMAGE_SIZE_MAP: Record<ImageSizeNames, { container: ImageSize, icon
       height: 100
     }
   },
+  strech: {
+    container: {
+      width: "100%",
+      height: "100%"
+    },
+    icon: {
+      width: 100,
+      height: 100
+    }
+
+  },
+
 
 }

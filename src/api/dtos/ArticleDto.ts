@@ -1,3 +1,4 @@
+export type ArticleSimpleDto = Pick<ArticleDto, 'id' | 'title' | 'images'>
 export interface ArticleDto {
   id: number
   title: string

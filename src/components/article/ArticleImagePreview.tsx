@@ -19,7 +19,8 @@ export function ArticleImagePreview(props: ArticleImagePreviewProps) {
       sx={{
         position: 'absolute',
         bottom: theme => theme.spacing(0.75),
-        right: theme => theme.spacing(0.75)
+        right: theme => theme.spacing(0.75),
+        color: theme => theme.palette.info.dark
       }}
       >
       <ZoomInIcon />

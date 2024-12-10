@@ -2,12 +2,12 @@ import { ArticleDto } from "../api/dtos/ArticleDto";
 import { data } from '../constants/data';
 
 export function getRandomizedArticle(): ArticleDto {
-  const increment = getRandomInt(4);
+  const randomId = getRandomInt();
   return {
     ...data['article'],
-    id: getRandomInt(),    
-    price: data['article'].price + increment,
-    title: `${increment}_${data['article'].title}`
+    id: randomId,    
+    price: data['article'].price + randomId,
+    title: `${randomId}_${data['article'].title}`
 
   }
 }
