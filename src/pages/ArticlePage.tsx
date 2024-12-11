@@ -1,20 +1,24 @@
 import { useParams } from "react-router";
 import { ArticleOverviewSection } from "../components/article/ArticleOverviewSection";
 import { ArticleDescriptionSection } from "../components/article/ArticleDescriptionSection";
-import { useEffect, useState } from "react";
-import { articleService } from "../services/articleService";
+import { useEffect } from "react";
 import { ArticleModel } from "../models/ArticleModel";
 import React from "react";
 import Box from "@mui/material/Box";
-
+import { useDispatch } from "react-redux";
+import { StoreDispatch, StoreType } from "../store";
+import { fetchArticle } from "../actions/articleActions";
+import { useSelector } from "react-redux";
 export function ArticlePage() {
   const { articleId } = useParams();
-  const [article, setArticle] = useState<ArticleModel | null>(null)
+
+  const dispatch = useDispatch<StoreDispatch>();
+  const article = useSelector<StoreType, ArticleModel | null>( store => store.article.data)
 
   useEffect( () => {
-    articleService.getArticle(Number(articleId))
-      .then( setArticle )        
-
+    if(articleId != null) {
+      dispatch(fetchArticle(Number(articleId)))
+    }
   }, [articleId]);
 
   return (

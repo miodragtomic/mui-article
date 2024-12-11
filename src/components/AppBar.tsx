@@ -11,39 +11,30 @@ import { FactSoftIcon } from './icons/FactSoftIcon';
 import { FavoriteIcon } from './icons/FavoriteIcon';
 import { CartIcon } from './icons/CartIcon';
 import { useEffect } from 'react';
-import { cartService } from '../services/cartService';
-import { fetchCartFulfilled, fetchCartPending, fetchCartRejected } from '../actions/cartActions';
+import { fetchCart } from '../actions/cartActions';
 import { useDispatch } from 'react-redux';
 import { useSelector } from 'react-redux';
 import { CartModel } from '../models/CartModel';
 import { Dispatch } from 'redux';
-import { StoreActions } from '../store';
+import { StoreActions, StoreType } from '../store';
+import { ArticleModel } from '../models/ArticleModel';
 
 export interface AppBarProps extends ElevationScrollProps {
   title: string;
   cartItemsCount: number
 }
 
-interface ElevationScrollProps {
-  
-
-  /**
-   * Injected by the documentation to work in an iframe.
-   * You won't need it on your project.
-   */
-  window?: () => Window;
+interface ElevationScrollProps {  
   children?: React.ReactElement<{ elevation?: number }>;
 }
 
 function ElevationScroll(props: ElevationScrollProps) {
-  const { children, window } = props;
-  // Note that you normally won't need to set the window ref as useScrollTrigger
-  // will default to window.
-  // This is only being set here because the demo is in an iframe.
+  const { children } = props;
+
   const trigger = useScrollTrigger({
     disableHysteresis: true,
     threshold: 0,
-    target: window ? window() : undefined,
+    target: window
   });
 
   return children
@@ -53,20 +44,20 @@ function ElevationScroll(props: ElevationScrollProps) {
     : null;
 }
 
+const DEFAULT_HEADER_TITLE = "List of articles"
+
 export default function ElevateAppBar(props: AppBarProps) {
   const { 
     title = "Headr title",
     cartItemsCount = 4, 
     ...restProps} = props ?? {};
 
-  const cartState = useSelector<CartModel, CartModel>( store => store)
+  const cartState = useSelector<StoreType, CartModel>( store => store.cart.data)
+  const articleTitle = useSelector<StoreType, ArticleModel['title'] | undefined>(store => store.article.data?.title)
   const dispatch = useDispatch<Dispatch<StoreActions>>();
 
   useEffect( () => {
-    dispatch(fetchCartPending());
-    cartService.getCart()
-      .then( result => dispatch(fetchCartFulfilled(result)))
-      .catch( () => dispatch(fetchCartRejected()))
+    dispatch(fetchCart())
   },[]);
   
   const cartMenuIconId = "fact"
@@ -79,7 +70,7 @@ export default function ElevateAppBar(props: AppBarProps) {
         <AppBar>
           <Toolbar>
             <Typography sx={{px: 2}} variant="h6" component="div" color='secondary'>
-              { title }
+              { articleTitle ?? DEFAULT_HEADER_TITLE }
             </Typography>
             <Box sx={{ flexGrow: 1 }} />
             <Box sx={{ display: { xs: 'none', md: 'flex' } }}>

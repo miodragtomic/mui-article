@@ -1,4 +1,7 @@
+import { Dispatch } from "redux";
 import { CartModel } from "../models/CartModel";
+import { StoreActions, StoreObjectActions } from "../store";
+import { cartService as _cartService, ICartService } from "../services/cartService";
 
 export function fetchCartPending() {
   return {
@@ -12,12 +15,15 @@ export function fetchCartFulfilled(cart: CartModel) {
     payload: {
       cart
     }
-  }
+  } as const
 }
 
-export function fetchCartRejected() {
+export function fetchCartRejected(error: unknown) {
   return {
-    type: 'FETCH_CART_REJECTED'
+    type: 'FETCH_CART_REJECTED',
+    payload: {
+      error
+    }
   } as const
 }
 
@@ -30,6 +36,20 @@ export function addToCart(articleId: number, count: number, pricePerOneCount: nu
       pricePerOneCount,
     }
   } as const
+}
+
+const cartService: ICartService = _cartService
+
+export function fetchCart() {
+  return async function (dispatch: Dispatch<StoreObjectActions>) {
+    dispatch(fetchCartPending())
+    try {
+      const cart = await cartService.getCart();
+      dispatch(fetchCartFulfilled(cart));
+    }catch(error) {
+      dispatch(fetchCartRejected(error));
+    }
+  }
 }
 
 export type CartActions = ReturnType<typeof addToCart> | ReturnType<typeof fetchCartPending> | ReturnType<typeof fetchCartFulfilled>

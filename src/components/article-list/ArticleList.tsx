@@ -22,7 +22,7 @@ export function ArticleList(props: ArticleListProps) {
   }
 
   return (
-    <ImageList sx={{ width: 540}} gap={15} rowHeight={210}>
+    <ImageList sx={{ width: 540, mx: 3}} gap={15} rowHeight={210}>
       {props.articleList.map((articleSimple) => (
         <ImageListItem key={articleSimple.id} sx={{cursor: 'pointer'}}>
           <ArticleImage
